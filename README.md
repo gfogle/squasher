@@ -10,3 +10,5 @@ Opens an electron app and allows you to choose a directory that contains the git
 - clone the repo
 - yarn install - or npm install
 - npm start
+
+![alt text](https://github.com/gfogle/squasher/blob/master/readme/Screen%20Shot%202017-07-01%20at%2011.21.38%20AM.png "Screenshot")
