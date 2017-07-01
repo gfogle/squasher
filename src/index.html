@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Squasher</title>
+
+    <link rel="stylesheet" href="./index.css">
+  </head>
+  <body>
+    <div id="container">
+      <span id="select-container">
+        <label for="file-select">Choose Directory:</label>
+        <input id="file-select"
+          name="file-select"
+          type="file"
+          webkitdirectory />
+        <button id="delete-btn"
+          type="button">Delete Selected</button>
+      </span>
+
+      <ul id="branches-list">
+      </ul>
+
+      <footer>
+        We are using node <script>document.write(process.versions.node)</script>,
+        Chrome <script>document.write(process.versions.chrome)</script>,
+        and Electron <script>document.write(process.versions.electron)</script>.
+      </footer>
+    </div>
+
+    <script src="./index.js"></script>
+  </body>
+</html>

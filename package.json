@@ -1,0 +1,28 @@
+{
+  "name": "squasher",
+  "version": "1.0.0",
+  "description": "Node app to delete git branches locally that have been squash merged",
+  "main": "main.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gfogle/squasher.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gfogle/squasher/issues"
+  },
+  "homepage": "https://github.com/gfogle/squasher#readme",
+  "scripts": {
+    "start": "./node_modules/.bin/electron .",
+    "start:dev": "IS_DEV=true ./node_modules/.bin/electron ."
+  },
+  "dependencies": {
+    "ejs": "2.5.6",
+    "electron": "1.6.11",
+    "express": "4.15.3",
+    "express-bunyan-logger": "1.3.2",
+    "nodemon": "1.11.0"
+  }
+}
