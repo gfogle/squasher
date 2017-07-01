@@ -133,7 +133,9 @@
         function onDeleteClicked() {
           getDeletableBranches()
             .then(deleteBranches)
-            .then(getBranches(selectedDirectory))
+            .then(function() {
+              return getBranches(selectedDirectory);
+            })
             .then(buildBranchesList);
         }
 
@@ -156,20 +158,26 @@
         }
 
         function deleteBranches(list) {
+          list = list.join(' ');
+
           return new Promise(function(resolve, reject) {
             var child = require('child_process');
-            var list = child.spawn('./delete-branches.sh', [
+            var del = child.spawn('./delete-branches.sh', [
               '--directory', 
               selectedDirectory, 
               '--branches', 
-              list 
+              list
             ]);
 
-            list.stdout.on('data', function (data) {
+            del.stdout.on('data', function (data) {
               branches = data.toString();
             });
 
-            list.on('close', function (code) {
+            del.stderr.on('data', function (data) {
+              console.log('stderr: ' + data);
+            });
+
+            del.on('close', function (code) {
               console.log('child process exited with code ' + code);
               resolve();
             });
@@ -187,6 +195,8 @@
 
         function buildBranchesList() {
           var elements = [];
+
+          branchesList.innerHTML = '';
 
           branches.forEach(function(b) {
             var li = document.createElement('LI');
@@ -215,12 +225,24 @@
         }
 
         function getBranches(directory) {
+          branches = [];
+
           return new Promise(function(resolve, reject) {
             var child = require('child_process');
             var list = child.spawn('./get-branches.sh', ['--directory', directory]);
 
             list.stdout.on('data', function (data) {
-              branches = data.toString().split('\n').filter((b) => b.trim().length > 0);
+              branches = data
+                .toString()
+                .split('\n')
+                .filter((b) => b.trim().length > 0)
+                .map((b) => {
+                  return b.trim();
+                });
+            });
+
+            list.stderr.on('data', function (data) {
+              console.log('stderr: ' + data);
             });
 
             list.on('close', function (code) {

@@ -8,4 +8,5 @@
 # $3 is --branches
 # $4 is "branch1 branch2"
 
+
 cd $2 && git branch -D $4
