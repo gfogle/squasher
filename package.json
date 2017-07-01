@@ -15,7 +15,8 @@
   },
   "homepage": "https://github.com/gfogle/squasher#readme",
   "scripts": {
-    "start": "./node_modules/.bin/electron ."
+    "start": "./node_modules/.bin/electron .",
+    "start:dev": "IS_DEV=true ./node_modules/.bin/electron ."
   },
   "dependencies": {
     "ejs": "2.5.6",
